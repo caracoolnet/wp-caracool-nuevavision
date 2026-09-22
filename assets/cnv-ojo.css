@@ -1,0 +1,9 @@
+/*!
+ * Caracool Nueva Visión — Ojo del logo
+ */
+[data-cnv-ojo] .cnv-ojo{display:block;width:100%;height:auto;overflow:visible}
+[data-cnv-ojo] .cnv-ojo-trazo{fill:var(--cnv-ojo-color,var(--e-global-color-secondary,#452333))}
+[data-cnv-ojo] .cnv-ojo-pupila{fill:var(--cnv-ojo-brillo,var(--e-global-color-accent,#F4F3F0));transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+[data-cnv-ojo] .cnv-ojo-parpado{transform-box:fill-box;transform-origin:50% 55%;transition:transform .09s ease-in}
+[data-cnv-ojo].cnv-ojo--cierra .cnv-ojo-parpado{transform:scaleY(.08)}
+@media (prefers-reduced-motion:reduce){[data-cnv-ojo] .cnv-ojo-pupila,[data-cnv-ojo] .cnv-ojo-parpado{transition:none;transform:none!important}}

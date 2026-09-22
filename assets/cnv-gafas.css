@@ -1,0 +1,15 @@
+/*!
+ * Caracool Nueva Visión — Gafas 3D
+ * La capa .cnv-gafas la mete cnv-gafas.js dentro del contenedor. Va fija en
+ * pantalla y el contenedor la recorta (clip-path), así que al subir la tapa.
+ * Selectores dobles para ganar a la regla de hijos de Motion · Fondo vivo.
+ */
+[data-cnv-gafas]{clip-path:inset(0)}
+[data-cnv-gafas][data-cnv-gafas] > .cnv-gafas.cnv-gafas{position:fixed;z-index:0;pointer-events:none;
+  right:var(--cnv-gafas-x,-12vw);top:var(--cnv-gafas-y,-16vh);width:var(--cnv-gafas-ancho,104vw);aspect-ratio:10/7}
+[data-cnv-gafas-capa="delante"][data-cnv-gafas-capa="delante"] > .cnv-gafas.cnv-gafas{z-index:3}
+.cnv-gafas img,.cnv-gafas canvas{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity .6s ease}
+.cnv-gafas canvas{opacity:0}
+.cnv-gafas.cnv-gafas--lista canvas{opacity:1}
+.cnv-gafas.cnv-gafas--lista img{opacity:0}
+@media (prefers-reduced-motion:reduce){.cnv-gafas img,.cnv-gafas canvas{transition:none}}
