@@ -2,6 +2,10 @@
 
 Numeración: se sube 0.1 en 0.1 cuando una tanda queda cerrada y confirmada; el tercer dígito es para arreglos sobre lo ya publicado.
 
+## 0.3.1 (23 de septiembre de 2026)
+
+- Se retira la cita online: la óptica no la usaba. `/booking/`, `/thank-you-for-booking/` y `/booking-my-account/` pasan a redirigir a `/pedir-cita/`, donde están el teléfono y el WhatsApp.
+
 ## 0.3.0 (23 de septiembre de 2026)
 
 Módulo nuevo: **Menú del móvil**.

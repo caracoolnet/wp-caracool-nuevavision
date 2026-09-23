@@ -3,7 +3,7 @@
  * Plugin Name:  Caracool Nueva Visión
  * Plugin URI:   https://github.com/caracoolnet/wp-caracool-nuevavision
  * Description:  Piezas propias de la web de Óptica Nueva Visión: las gafas 3D del hero, el ojo del logo que mira y parpadea, el menú del móvil a pantalla completa y las redirecciones de la web vieja.
- * Version:      0.3.0
+ * Version:      0.3.1
  * Author:       Caracool
  * Author URI:   https://caracool.net
  * License:      GPL-2.0-or-later
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CARACOOL_NUEVAVISION_VERSION', '0.3.0' );
+define( 'CARACOOL_NUEVAVISION_VERSION', '0.3.1' );
 define( 'CARACOOL_NUEVAVISION_FILE', __FILE__ );
 define( 'CARACOOL_NUEVAVISION_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CARACOOL_NUEVAVISION_URL', plugin_dir_url( __FILE__ ) );
