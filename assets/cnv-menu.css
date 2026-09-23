@@ -1,0 +1,114 @@
+/*!
+ * Caracool Nueva Visión — Menú del móvil a pantalla completa
+ * ─────────────────────────────────────────────────────────────────────
+ * Decisión de diseño de esta web, no del plugin que usan las demás: el
+ * desplegable del widget Menú de Elementor se convierte en una capa que
+ * ocupa la pantalla, con el rosa del Kit y dos manchas que se mueven
+ * despacio detrás.
+ */
+/* El desplegable del widget Menú de Elementor pasa a ser una capa que
+   ocupa la pantalla, con el color principal del Kit y unas manchas que se
+   mueven despacio detrás. La cabecera se queda por encima, así que el
+   logotipo y la equis siguen a la vista. */
+.cnv-menu-pantalla .elementor-nav-menu--dropdown {
+	position: fixed !important;
+	inset: 0 !important;
+	z-index: 80;
+	max-height: 100dvh !important;
+	height: 100dvh;
+	width: 100vw;
+	margin: 0 !important;
+	padding: calc(var(--cnv-cabecera-alto, 84px) + 24px) 24px 40px !important;
+	overflow-y: auto !important;
+	overscroll-behavior: contain;
+	box-sizing: border-box;
+	/* Con !important porque el widget Menú de Elementor pinta su propio
+	   fondo y su propio tamaño de letra en el desplegable. */
+	background-color: var(--cnv-menu-fondo, var(--e-global-color-primary, #eee)) !important;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: center;
+	isolation: isolate;
+}
+/* Cerrado: ni se ve ni se toca. Elementor solo cambia el aria-hidden. */
+.cnv-menu-pantalla .elementor-nav-menu--dropdown[aria-hidden="true"] {
+	opacity: 0;
+	pointer-events: none;
+	visibility: hidden;
+	transition: opacity .3s ease, visibility 0s linear .3s;
+}
+.cnv-menu-pantalla .elementor-nav-menu--dropdown:not([aria-hidden="true"]) {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity .35s ease;
+}
+/* Manchas del fondo: dos capas grandes que van y vienen. */
+.cnv-menu-pantalla .elementor-nav-menu--dropdown::before,
+.cnv-menu-pantalla .elementor-nav-menu--dropdown::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	border-radius: 50%;
+	filter: blur(60px);
+	opacity: .75;
+	pointer-events: none;
+}
+.cnv-menu-pantalla .elementor-nav-menu--dropdown::before {
+	width: 90vw; height: 90vw; top: -25vw; left: -30vw;
+	background: var(--cnv-menu-mancha-a, var(--e-global-color-accent, #fff));
+	animation: cnv-menu-vaiven 14s ease-in-out infinite alternate;
+}
+.cnv-menu-pantalla .elementor-nav-menu--dropdown::after {
+	width: 80vw; height: 80vw; bottom: -30vw; right: -25vw;
+	background: var(--cnv-menu-mancha-b, var(--e-global-color-secondary, #888));
+	opacity: .4;
+	animation: cnv-menu-vaiven 18s ease-in-out infinite alternate-reverse;
+}
+@keyframes cnv-menu-vaiven {
+	from { transform: translate3d(0, 0, 0) scale(1); }
+	to   { transform: translate3d(12vw, 8vw, 0) scale(1.25); }
+}
+/* La capa va dentro de la cabecera, así que el resto de piezas (logotipo,
+   botón y la propia equis) suben por encima para seguir viéndose y poder
+   pulsarse con el menú abierto. */
+.cnv-menu-pantalla .elementor-menu-toggle,
+.cnv-menu-pantalla .elementor-widget-image,
+.cnv-menu-pantalla .elementor-widget-button {
+	position: relative;
+	z-index: 81;
+}
+
+/* Los enlaces, grandes y uno debajo de otro, entrando escalonados. */
+.cnv-menu-pantalla .elementor-nav-menu--dropdown .elementor-nav-menu {
+	gap: 2px;
+}
+.cnv-menu-pantalla .elementor-nav-menu--dropdown .elementor-item {
+	font-size: clamp(30px, 9vw, 46px) !important;
+	line-height: 1.12 !important;
+	letter-spacing: -.03em;
+	padding: 10px 0 !important;
+	border: 0 !important;
+	background: none !important;
+	/* Sobre el color principal, el texto va en el Secundario del Kit: el
+	   color que el widget usa en el desplegable suele estar pensado para
+	   otro fondo y aquí se queda corto de contraste. */
+	color: var(--cnv-menu-texto, var(--e-global-color-secondary, #222)) !important;
+}
+.cnv-menu-pantalla .elementor-nav-menu--dropdown:not([aria-hidden="true"]) .elementor-item {
+	animation: cnv-menu-entra .5s cubic-bezier(.22, 1, .36, 1) both;
+	animation-delay: calc(60ms + var(--cnv-i, 0) * 45ms);
+}
+@keyframes cnv-menu-entra {
+	from { opacity: 0; transform: translateY(14px); }
+	to   { opacity: 1; transform: none; }
+}
+/* Con el menú abierto, la página de detrás no se mueve. */
+html.cnv-menu-abierto, html.cnv-menu-abierto body { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+	.cnv-menu-pantalla .elementor-nav-menu--dropdown::before,
+	.cnv-menu-pantalla .elementor-nav-menu--dropdown::after,
+	.cnv-menu-pantalla .elementor-nav-menu--dropdown .elementor-item {
+		animation: none;
+	}
+}
