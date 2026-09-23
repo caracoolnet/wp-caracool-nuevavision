@@ -2,7 +2,7 @@
 
 Plugin de WordPress con las piezas propias de la web de **Óptica Nueva Visión** (Archena). Lo que solo tiene sentido en esta web vive aquí y no en Caracool Motion, que usan todas.
 
-**Versión actual:** 0.1.0 · **Requiere:** WordPress 6.0+, Elementor 3.16+ (contenedores flexbox)
+**Versión actual:** 0.3.0 · **Requiere:** WordPress 6.0+, Elementor 3.16+ (contenedores flexbox)
 
 Mismo chasis que el resto de plugins de Caracool: archivo principal delgado, módulos autorregistrados en `modules/`, una pestaña por módulo en **Caracool → Nueva Visión**, el menú compartido `inc/caracool-menu.php` (igual byte a byte que en `caracoolnet/wp-caracool-shared`) y actualizaciones desde las releases de este repositorio.
 
@@ -38,6 +38,20 @@ Pinta el ojo del logotipo en un contenedor. La pupila sigue al cursor (al scroll
 
 Se para fuera de pantalla y con la pestaña oculta; con movimiento reducido, quieto. `cnv-ojo.css` y `cnv-ojo.js` (≈2 KB) solo se cargan donde se usa.
 
+### Menú del móvil
+
+En el móvil, el desplegable del widget Menú de Elementor pasa a ser una capa que ocupa la pantalla: el color **Principal** del Kit de fondo y dos manchas grandes que se mueven despacio detrás. Los enlaces salen grandes (de 30 a 46 px según el ancho), en el color **Secundario**, y entran uno detrás de otro. Mientras está abierto, la página de detrás no se mueve.
+
+El logotipo, el botón de la cabecera y la equis para cerrar se quedan por encima de la capa. No toca el widget de Elementor ni el menú de WordPress: quitando el plugin vuelve el desplegable de siempre. Sin ajustes: es la decisión de diseño de esta web. Con movimiento reducido, las manchas y la entrada se quedan quietas.
+
+`cnv-menu.css` y `cnv-menu.js` suman poco más de 4 KB y se cargan en toda la web, porque la cabecera está en todas las páginas.
+
+### Redirecciones
+
+Las direcciones de la web vieja (páginas, entradas del blog, la tienda de WooCommerce y la cita online) llevan con un 301 a su página equivalente. Solo actúa cuando WordPress ya ha decidido que la dirección no existe, así que no puede tapar una página buena. Tabla de direcciones exactas y reglas por patrón para `/product/`, `/product-category/`, `/category/`, `/author/` y los archivos por fecha.
+
+La tabla está en el propio módulo, `modules/cnv-redirecciones.php`. Cuando existan las páginas legales, hay que llevar `/politica-de-proteccion-de-datos/` a la de privacidad.
+
 ## Lo que no está aquí
 
 El schema de la óptica sigue en OneStep (Código), como en el resto de webs.
@@ -50,10 +64,13 @@ caracool-nuevavision/
 ├── inc/caracool-menu.php      Menú compartido de Caracool
 ├── modules/
 │   ├── cnv-gafas.php          Gafas 3D
-│   └── cnv-ojo.php            Ojo del logo
+│   ├── cnv-ojo.php            Ojo del logo
+│   ├── cnv-menu.php           Menú del móvil a pantalla completa
+│   └── cnv-redirecciones.php  301 de las direcciones de la web vieja
 ├── assets/
 │   ├── cnv-gafas.css / .js    Capa, imagen fija y cargador diferido
 │   ├── cnv-ojo.css / .js      Ojo, mirada y parpadeo
+│   ├── cnv-menu.css / .js     Menú del móvil
 │   └── gafas/
 │       ├── gafas-3d.js        Three.js + módulo, empaquetado
 │       └── LICENSE-three.txt  Licencia MIT de Three.js

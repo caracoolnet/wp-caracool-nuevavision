@@ -2,8 +2,8 @@
 /**
  * Plugin Name:  Caracool Nueva Visión
  * Plugin URI:   https://github.com/caracoolnet/wp-caracool-nuevavision
- * Description:  Piezas propias de la web de Óptica Nueva Visión: las gafas 3D del hero y el ojo del logo que mira y parpadea. Se eligen desde Elementor, contenedor a contenedor.
- * Version:      0.1.0
+ * Description:  Piezas propias de la web de Óptica Nueva Visión: las gafas 3D del hero, el ojo del logo que mira y parpadea, el menú del móvil a pantalla completa y las redirecciones de la web vieja.
+ * Version:      0.3.0
  * Author:       Caracool
  * Author URI:   https://caracool.net
  * License:      GPL-2.0-or-later
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CARACOOL_NUEVAVISION_VERSION', '0.1.0' );
+define( 'CARACOOL_NUEVAVISION_VERSION', '0.3.0' );
 define( 'CARACOOL_NUEVAVISION_FILE', __FILE__ );
 define( 'CARACOOL_NUEVAVISION_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CARACOOL_NUEVAVISION_URL', plugin_dir_url( __FILE__ ) );
@@ -426,7 +426,7 @@ new Caracool_NuevaVision();
 // ── Módulos ─────────────────────────────────────────────────────────────
 // Cada uno se autorregistra. Si el archivo no existe, el plugin sigue
 // funcionando sin ese módulo.
-foreach ( array( 'cnv-gafas.php', 'cnv-ojo.php' ) as $modulo ) {
+foreach ( array( 'cnv-gafas.php', 'cnv-ojo.php', 'cnv-redirecciones.php', 'cnv-menu.php' ) as $modulo ) {
 	$ruta = CARACOOL_NUEVAVISION_DIR . 'modules/' . $modulo;
 	if ( file_exists( $ruta ) ) {
 		require_once $ruta;
