@@ -14,7 +14,7 @@
  *  página buena.
  *
  * LAS QUE NO SE TOCAN
- *  /gafas-graduadas/, /contacto/ y /booking/ existen igual en la web nueva.
+ *  /gafas-graduadas/ y /contacto/ existen igual en la web nueva.
  *
  * CUANDO HAYA PÁGINAS LEGALES
  *  Cambiar el destino de /politica-de-proteccion-de-datos/ a la nueva
@@ -54,6 +54,12 @@ class Caracool_NuevaVision_Redirecciones {
 			'my-account'                      => '/pedir-cita/',
 			'mi-cuenta'                       => '/pedir-cita/',
 			'thank-you-for-booking-2'         => '/pedir-cita/',
+			// La cita online se retiró: la óptica no la usaba. Todo lo que
+			// llevaba a ella va a «Pedir cita», donde están el teléfono y el
+			// WhatsApp.
+			'booking'                         => '/pedir-cita/',
+			'thank-you-for-booking'           => '/pedir-cita/',
+			'booking-my-account'              => '/pedir-cita/',
 			'inicio-nueva-version-accesible'  => '/',
 			'blog'                            => '/',
 			'politica-de-proteccion-de-datos' => '/',
